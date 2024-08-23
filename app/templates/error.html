@@ -1,0 +1,9 @@
+<!-- error.html -->
+
+{% extends "base.html" %} {% block content %}
+<section class="error">
+  <h2>Error</h2>
+  <p>{{ message }}</p>
+  <a href="{{ url_for('main.index') }}" class="btn">Go back</a>
+</section>
+{% endblock %}

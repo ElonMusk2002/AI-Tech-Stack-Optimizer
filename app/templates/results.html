@@ -1,0 +1,54 @@
+<!-- results.html -->
+
+{% extends "base.html" %} {% block content %}
+
+<section class="overall-opinion">
+  <h2>Overall Opinion</h2>
+  <p><strong>Opinion:</strong> {{ overall_opinion.opinion }}</p>
+  <h3>Strengths</h3>
+  <ul>
+    {% for strength in overall_opinion.strengths %}
+    <li>{{ strength }}</li>
+    {% endfor %}
+  </ul>
+  <h3>Weaknesses</h3>
+  <ul>
+    {% for weakness in overall_opinion.weaknesses %}
+    <li>{{ weakness }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
+
+<section class="analysis-results">
+  <h2>Analysis Results</h2>
+  <div class="tech-stack-analysis">
+    {% for tech, details in analysis.items() %}
+    <div class="tech-item">
+      <h3>{{ tech }}</h3>
+      <p><strong>Category:</strong> {{ details.category }}</p>
+      <p><strong>Popularity:</strong> {{ details.popularity }}</p>
+      <p><strong>Description:</strong> {{ details.description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="recommendations">
+  <h2>Recommendations</h2>
+  {% for tech, alternatives in recommendations.items() %}
+  <div class="recommendation-item">
+    <h3>Alternatives for {{ tech }}</h3>
+    <ul>
+      {% for alt in alternatives %}
+      <li>
+        <strong>{{ alt.name }}</strong>
+        <p><strong>Reason:</strong> {{ alt.reason }}</p>
+        <p><strong>Score:</strong> {{ alt.score }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}

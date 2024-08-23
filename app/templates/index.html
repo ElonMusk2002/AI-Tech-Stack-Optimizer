@@ -1,0 +1,31 @@
+<!-- index.html -->
+
+{% extends "base.html" %} {% block content %}
+<section class="tech-stack-form">
+  <h2>Analyze Your Tech Stack</h2>
+  <form method="POST" action="{{ url_for('main.index') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      <label for="tech_stack">Select your technologies:</label>
+      <div class="checkbox-container">
+        {% for tech in technologies %}
+        <div class="checkbox-item">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="tech_{{ tech.id }}"
+            name="tech_stack"
+            value="{{ tech.name }}"
+          />
+          <label class="form-check-label" for="tech_{{ tech.id }}">
+            {{ tech.name }}
+          </label>
+          <p class="checkbox-description">{{ tech.description }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {{ form.submit(class="btn") }}
+  </form>
+</section>
+{% endblock %}
